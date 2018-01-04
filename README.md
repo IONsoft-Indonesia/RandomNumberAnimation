@@ -25,7 +25,7 @@ val randomNumberAnimation = RandomNumberAnimation(yourTextView)
 ```kotlin
 randomNumberAnimation.start()
 ```
-## Step 5. Start
+## Step 5. Stop
 ```kotlin
 randomNumberAnimation.stop()
 // or
