@@ -14,6 +14,7 @@ class RandomNumberAnimation(private val textView: TextView) {
     private val random = SecureRandom()
     private var timer: Timer? = null
     private var defaultValue: CharSequence = textView.text
+
     /**
      * Takes a number CharSequence and return a random number String with the same length of the input
      */
@@ -21,14 +22,19 @@ class RandomNumberAnimation(private val textView: TextView) {
         return numbers
                 .map {
                     if (it in '0'..'9') {
-                        Character.forDigit(
-                                random.nextInt(9 - 0 + 1) + 0, 10
-                        )
+                        getRandomNumberChar()
                     } else {
                         it
                     }
                 }
                 .joinToString("")
+    }
+
+    /**
+     * Get random Char from '0'..'9'
+     */
+    private fun getRandomNumberChar(): Char {
+        return Character.forDigit(random.nextInt(10), 10)
     }
 
     fun stop(keepChange: Boolean = false) {
@@ -52,6 +58,6 @@ class RandomNumberAnimation(private val textView: TextView) {
                     }
                 })
             }
-        }, 1, 16) // 60FPS
+        }, 1, 16) // 1000 / 16 = 62.5FPS
     }
 }
