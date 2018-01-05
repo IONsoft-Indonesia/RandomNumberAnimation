@@ -3,6 +3,7 @@ Easily create random number change animation to a TextView
 
 <a href="https://jitpack.io/#IONsoft-Indonesia/RandomNumberAnimation"><img alt="Release" src="https://jitpack.io/v/IONsoft-Indonesia/RandomNumberAnimation.svg"></a>
 <a href="http://www.methodscount.com/?lib=com.github.IONsoft-Indonesia%3ARandomNumberAnimation%3A1.1"><img src="https://img.shields.io/badge/Methods and size-core: 37 | deps: 29878 | 21 KB-e91e63.svg"/></a>
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-RandomNumberAnimation-blue.svg?style=flat)](https://android-arsenal.com/details/1/6640)
 [![Build Status](https://travis-ci.org/IONsoft-Indonesia/RandomNumberAnimation.svg?branch=master)](https://travis-ci.org/IONsoft-Indonesia/RandomNumberAnimation)
 
 ## Preview
