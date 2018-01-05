@@ -11,9 +11,9 @@ import java.util.*
  */
 
 class RandomNumberAnimation(private val textView: TextView) {
+    private val random = SecureRandom()
     private var timer: Timer? = null
     private var defaultValue: CharSequence = textView.text
-
     /**
      * Takes a number CharSequence and return a random number String with the same length of the input
      */
@@ -22,7 +22,7 @@ class RandomNumberAnimation(private val textView: TextView) {
                 .map {
                     if (it in '0'..'9') {
                         Character.forDigit(
-                                SecureRandom().nextInt(9 - 0 + 1) + 0, 10
+                                random.nextInt(9 - 0 + 1) + 0, 10
                         )
                     } else {
                         it
