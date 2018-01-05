@@ -9,8 +9,8 @@ import java.util.*
  * Create random number animation from a TextView
  * @author hendrawd on 1/4/18
  */
-
 class RandomNumberAnimation(private val textView: TextView) {
+
     private val random = SecureRandom()
     private var timer: Timer? = null
     private var defaultValue: CharSequence = textView.text
@@ -37,6 +37,9 @@ class RandomNumberAnimation(private val textView: TextView) {
         return Character.forDigit(random.nextInt(10), 10)
     }
 
+    /**
+     * Stop the animation
+     */
     fun stop(keepChange: Boolean = false) {
         timer?.cancel()
         timer = null
@@ -45,6 +48,9 @@ class RandomNumberAnimation(private val textView: TextView) {
         }
     }
 
+    /**
+     * Start the animation
+     */
     fun start() {
         if (timer != null) {
             stop()
