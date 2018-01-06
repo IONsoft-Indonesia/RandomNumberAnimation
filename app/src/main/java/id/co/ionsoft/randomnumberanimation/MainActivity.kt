@@ -11,17 +11,24 @@ import org.jetbrains.anko.*
 
 class MainActivity : AppCompatActivity() {
 
+    private var randomNumberAnimation: RandomNumberAnimation? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val mainActivityUi = MainActivityUi()
         mainActivityUi.setContentView(this)
-        val randomNumberAnimation = RandomNumberAnimation(mainActivityUi.textView)
+        randomNumberAnimation = RandomNumberAnimation(mainActivityUi.textView)
         mainActivityUi.buttonStart.setOnClickListener {
-            randomNumberAnimation.start()
+            randomNumberAnimation?.start()
         }
         mainActivityUi.buttonStop.setOnClickListener {
-            randomNumberAnimation.stop()
+            randomNumberAnimation?.stop()
         }
+    }
+
+    override fun onStop() {
+        randomNumberAnimation?.stop()
+        super.onStop()
     }
 }
 
