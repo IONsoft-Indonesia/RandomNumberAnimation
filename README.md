@@ -57,6 +57,7 @@ randomNumberAnimation.stop()
 // or
 randomNumberAnimation.stop(true) // to keep the random number change inside the text
 ```
+**You must call stop() when you call start(), or it will cause memory leak. To make sure it will be stopped, you can call that also in your Activity's onStop() method. See example project for more reference**
 ## License
 ```
 MIT License
