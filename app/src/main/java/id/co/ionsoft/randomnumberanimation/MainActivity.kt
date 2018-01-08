@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         val mainActivityUi = MainActivityUi()
         mainActivityUi.setContentView(this)
         randomNumberAnimation = RandomNumberAnimation(mainActivityUi.textView)
+        randomNumberAnimation!!.delay = 1000
         mainActivityUi.buttonStart.setOnClickListener {
             randomNumberAnimation?.start()
         }
