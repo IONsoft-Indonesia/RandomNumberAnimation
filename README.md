@@ -1,8 +1,14 @@
 # RandomNumberAnimation
-Easily create random number change animation to a TextView
+Easily create random number change animation to a TextView and other subclasses of TextView
+
+Direct subclasses:
+Button, CheckedTextView, Chronometer, DigitalClock, EditText, TextClock
+
+Indirect subclasses:
+AutoCompleteTextView, CheckBox, CompoundButton, ExtractEditText, MultiAutoCompleteTextView, RadioButton, Switch, ToggleButton
 
 <a href="https://jitpack.io/#IONsoft-Indonesia/RandomNumberAnimation"><img alt="Release" src="https://jitpack.io/v/IONsoft-Indonesia/RandomNumberAnimation.svg"></a>
-<a href="http://www.methodscount.com/?lib=com.github.IONsoft-Indonesia%3ARandomNumberAnimation%3A1.1"><img src="https://img.shields.io/badge/Methods and size-core: 37 | deps: 29878 | 21 KB-e91e63.svg"/></a>
+<a href="http://www.methodscount.com/?lib=com.github.IONsoft-Indonesia%3ARandomNumberAnimation%3A1.2"><img src="https://img.shields.io/badge/Methods and size-core: 37 | deps: 29878 | 21 KB-e91e63.svg"/></a>
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-RandomNumberAnimation-blue.svg?style=flat)](https://android-arsenal.com/details/1/6640)
 [![Build Status](https://travis-ci.org/IONsoft-Indonesia/RandomNumberAnimation.svg?branch=master)](https://travis-ci.org/IONsoft-Indonesia/RandomNumberAnimation)
 
@@ -23,7 +29,7 @@ allprojects {
 ### Step 2. Add the dependency
 ```gradle
 dependencies {
-  compile 'com.github.IONsoft-Indonesia:RandomNumberAnimation:1.1'
+  compile 'com.github.IONsoft-Indonesia:RandomNumberAnimation:1.2'
 }
 ```
 ### Step 3. Initialize
@@ -56,6 +62,21 @@ randomNumberAnimation.stop(true); // to keep the random number change inside the
 randomNumberAnimation.stop()
 // or
 randomNumberAnimation.stop(true) // to keep the random number change inside the text
+```
+
+### Optional
+You can also specify the delay between frames or frame per second
+#### Java
+```java
+randomNumberAnimation.setDelay(16);
+// or
+randomNumberAnimation.setFPS(60);
+```
+#### Kotlin
+```kotlin
+randomNumberAnimation.delay = 16
+// or
+randomNumberAnimation.setFPS(60)
 ```
 **You must call stop() when you call start(), or it will cause memory leak. To make sure it will be stopped, you can call that also in your Activity's onStop() method. See example project for more reference**
 ## License
