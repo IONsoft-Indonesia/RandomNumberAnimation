@@ -24,10 +24,9 @@
 
 package id.co.ionsoft.randomnumberanimationlibrary
 
+import android.os.Handler
 import android.widget.TextView
-import org.jetbrains.anko.runOnUiThread
 import java.security.SecureRandom
-import java.util.*
 
 /**
  * Create random number animation from a TextView
@@ -36,7 +35,15 @@ import java.util.*
 class RandomNumberAnimation(private val textView: TextView) {
 
     private val random = SecureRandom()
-    private var timer: Timer? = null
+    private val handler = Handler()
+    private val runnable = object : Runnable {
+        override fun run() {
+            textView.text = randomize(textView.text)
+            handler.postDelayed(this, delay)
+        }
+    }
+    private var delay = 16L
+    private var started = false
     private var defaultValue: CharSequence = textView.text
 
     /**
@@ -65,10 +72,12 @@ class RandomNumberAnimation(private val textView: TextView) {
      * Stop the animation
      */
     fun stop(keepChange: Boolean = false) {
-        timer?.cancel()
-        timer = null
-        if (!keepChange) {
-            textView.text = defaultValue
+        if (started) {
+            handler.removeCallbacks(runnable)
+            started = false
+            if (!keepChange) {
+                textView.text = defaultValue
+            }
         }
     }
 
@@ -76,18 +85,9 @@ class RandomNumberAnimation(private val textView: TextView) {
      * Start the animation
      */
     fun start() {
-        if (timer != null) {
-            stop()
+        if (!started) {
+            handler.postDelayed(runnable, delay)
+            started = true
         }
-        timer = Timer()
-        timer!!.schedule(object : TimerTask() {
-            override fun run() {
-                textView.context.runOnUiThread({
-                    if (timer != null) {
-                        textView.text = randomize(textView.text)
-                    }
-                })
-            }
-        }, 1, 16) // 1000 / 16 = 62.5FPS
     }
 }
