@@ -42,9 +42,9 @@ class RandomNumberAnimation(private val textView: TextView) {
             handler.postDelayed(this, delay)
         }
     }
-    private var delay = 16L
     private var started = false
     private var defaultValue: CharSequence = textView.text
+    var delay = 16L
 
     /**
      * Takes a number CharSequence and return a random number String with the same length of the input
@@ -66,6 +66,14 @@ class RandomNumberAnimation(private val textView: TextView) {
      */
     private fun getRandomNumberChar(): Char {
         return Character.forDigit(random.nextInt(10), 10)
+    }
+
+    fun setFPS(fps: Int) {
+        delay = 1000L / fps
+    }
+
+    fun getFPS(): Int {
+        return (1000L / delay).toInt()
     }
 
     /**
