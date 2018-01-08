@@ -34,6 +34,17 @@ dependencies {
     implementation "org.jetbrains.anko:anko-sdk25:$anko_version" // sdk15, sdk19, sdk21, sdk23 are also available
     implementation "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
 }
+
 repositories {
     mavenCentral()
 }
+
+// quick fix for https://github.com/jitpack/jitpack.io/issues/2189
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+artifacts {
+    archives sourcesJar
+}
+// end quick fix for https://github.com/jitpack/jitpack.io/issues/2189

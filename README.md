@@ -30,6 +30,10 @@ allprojects {
 ```gradle
 dependencies {
   compile 'com.github.IONsoft-Indonesia:RandomNumberAnimation:1.2'
+  // currently, there is a problem with jitpack.io https://github.com/jitpack/jitpack.io/issues/2189
+  // use 
+  compile 'com.github.IONsoft-Indonesia:RandomNumberAnimation:quick-fix-SNAPSHOT'
+  // instead if the first one can't be downloaded
 }
 ```
 ### Step 3. Initialize
