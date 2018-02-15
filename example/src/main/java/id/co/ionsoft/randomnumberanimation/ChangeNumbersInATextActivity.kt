@@ -2,6 +2,7 @@ package id.co.ionsoft.randomnumberanimation
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
@@ -9,37 +10,53 @@ import android.widget.TextView
 import id.co.ionsoft.randomnumberanimationlibrary.RandomNumberAnimation
 import org.jetbrains.anko.*
 
-class MainActivity : AppCompatActivity() {
+class ChangeNumbersInATextActivity : AppCompatActivity() {
 
     private var randomNumberAnimation: RandomNumberAnimation? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val mainActivityUi = MainActivityUi()
-        mainActivityUi.setContentView(this)
-        randomNumberAnimation = RandomNumberAnimation(mainActivityUi.textView)
+        val changeNumbersInATextActivityUi = ChangeNumbersInATextActivityUi()
+        changeNumbersInATextActivityUi.setContentView(this)
+        randomNumberAnimation = RandomNumberAnimation(changeNumbersInATextActivityUi.textView)
         randomNumberAnimation!!.delay = 1000
-        mainActivityUi.buttonStart.setOnClickListener {
+        changeNumbersInATextActivityUi.buttonStart.setOnClickListener {
             randomNumberAnimation?.start()
         }
-        mainActivityUi.buttonStop.setOnClickListener {
+        changeNumbersInATextActivityUi.buttonStop.setOnClickListener {
             randomNumberAnimation?.stop()
         }
+
+        createBackButton()
     }
 
     override fun onStop() {
         randomNumberAnimation?.stop()
         super.onStop()
     }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun createBackButton() {
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+    }
 }
 
-class MainActivityUi : AnkoComponent<MainActivity> {
+class ChangeNumbersInATextActivityUi : AnkoComponent<ChangeNumbersInATextActivity> {
 
     lateinit var textView: TextView
     lateinit var buttonStart: Button
     lateinit var buttonStop: Button
 
-    override fun createView(ui: AnkoContext<MainActivity>): View = with(ui) {
+    override fun createView(ui: AnkoContext<ChangeNumbersInATextActivity>): View = with(ui) {
         scrollView {
             linearLayout {
                 orientation = LinearLayout.VERTICAL

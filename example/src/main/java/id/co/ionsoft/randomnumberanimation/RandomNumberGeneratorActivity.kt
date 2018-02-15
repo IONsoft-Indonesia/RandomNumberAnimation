@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
@@ -36,12 +37,28 @@ class RandomNumberGeneratorActivity : AppCompatActivity() {
                 toast("Still generating...")
             }
         }
+
+        createBackButton()
     }
 
     override fun onStop() {
         randomNumberAnimation?.stop(true)
         isGeneratingRandomNumber = false
         super.onStop()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun createBackButton() {
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 }
 
