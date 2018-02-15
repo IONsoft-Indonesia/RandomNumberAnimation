@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RandomNumberAnimation.iml" filepath="$PROJECT_DIR$/RandomNumberAnimation.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/randomnumberanimationlibrary/randomnumberanimationlibrary.iml" filepath="$PROJECT_DIR$/randomnumberanimationlibrary/randomnumberanimationlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/example/app.iml" filepath="$PROJECT_DIR$/example/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/randomnumberanimationlibrary.iml" filepath="$PROJECT_DIR$/library/randomnumberanimationlibrary.iml" />
     </modules>
   </component>
 </project>

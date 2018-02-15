@@ -1,1 +1,1 @@
-include ':app', ':randomnumberanimationlibrary'
+include ':example', ':library'
