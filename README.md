@@ -8,7 +8,7 @@ Indirect subclasses:
 AutoCompleteTextView, CheckBox, CompoundButton, ExtractEditText, MultiAutoCompleteTextView, RadioButton, Switch, ToggleButton
 
 <a href="https://jitpack.io/#IONsoft-Indonesia/RandomNumberAnimation"><img alt="Release" src="https://jitpack.io/v/IONsoft-Indonesia/RandomNumberAnimation.svg"></a>
-<a href="http://www.methodscount.com/?lib=com.github.IONsoft-Indonesia%3ARandomNumberAnimation%3A1.3"><img src="https://img.shields.io/badge/Methods and size-core: 37 | deps: 29878 | 21 KB-e91e63.svg"/></a>
+<a href="http://www.methodscount.com/?lib=com.github.IONsoft-Indonesia%3ARandomNumberAnimation%3A1.3.1"><img src="https://img.shields.io/badge/Methods and size-core: 37 | deps: 29878 | 21 KB-e91e63.svg"/></a>
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-RandomNumberAnimation-blue.svg?style=flat)](https://android-arsenal.com/details/1/6640)
 [![Build Status](https://travis-ci.org/IONsoft-Indonesia/RandomNumberAnimation.svg?branch=master)](https://travis-ci.org/IONsoft-Indonesia/RandomNumberAnimation)
 
@@ -29,7 +29,7 @@ allprojects {
 ### Step 2. Add the dependency
 ```gradle
 dependencies {
-  compile 'com.github.IONsoft-Indonesia:RandomNumberAnimation:1.3'
+  compile 'com.github.IONsoft-Indonesia:RandomNumberAnimation:1.3.1'
   // currently, there is a problem with jitpack.io https://github.com/jitpack/jitpack.io/issues/2189
   // use 
   compile 'com.github.IONsoft-Indonesia:RandomNumberAnimation:quick-fix-SNAPSHOT'
