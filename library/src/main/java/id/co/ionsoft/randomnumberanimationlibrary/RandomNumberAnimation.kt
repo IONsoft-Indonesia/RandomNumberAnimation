@@ -24,48 +24,63 @@
 
 package id.co.ionsoft.randomnumberanimationlibrary
 
+import android.arch.lifecycle.Lifecycle
+import android.arch.lifecycle.LifecycleObserver
+import android.arch.lifecycle.LifecycleOwner
+import android.arch.lifecycle.OnLifecycleEvent
 import android.os.Handler
+import android.util.Log
 import android.widget.TextView
-import java.security.SecureRandom
 
 /**
  * Create random number animation from a TextView
  * @author hendrawd on 1/4/18
  */
-class RandomNumberAnimation(private val textView: TextView) {
 
-    private val random = SecureRandom()
-    private val handler = Handler()
-    private val runnable = object : Runnable {
-        override fun run() {
-            textView.text = randomize(textView.text)
-            handler.postDelayed(this, delay)
+private val TAG by lazy {
+    RandomNumberAnimation::class.simpleName
+}
+
+class RandomNumberAnimation(private var textView: TextView) {
+
+    private val randomizer by lazy {
+        Randomizer()
+    }
+
+    private val handler by lazy {
+        Handler()
+    }
+
+    private val runnable by lazy {
+        object : Runnable {
+            override fun run() {
+                textView.text = randomizer.randomize(textView.text)
+                handler.postDelayed(this, delay)
+            }
         }
     }
-    private var started = false
-    private var defaultValue: CharSequence = textView.text
+
+    private var isRunning = false
+    private var defaultValue: CharSequence
     var delay = 16L
 
-    /**
-     * Takes a number CharSequence and return a random number String with the same length of the input
-     */
-    private fun randomize(numbers: CharSequence): String {
-        return numbers
-                .map {
-                    if (it in '0'..'9') {
-                        getRandomNumberChar()
-                    } else {
-                        it
-                    }
-                }
-                .joinToString("")
+    init {
+        val activity = Util.getActivity(textView.context)
+        if (activity != null) {
+            (activity as LifecycleOwner).lifecycle.addObserver(StopObserver())
+            Log.d(TAG, "activity from init is not null")
+        } else {
+            Log.d(TAG, "activity from init is null")
+        }
+        this.defaultValue = textView.text
     }
 
-    /**
-     * Get random Char from '0'..'9'
-     */
-    private fun getRandomNumberChar(): Char {
-        return Character.forDigit(random.nextInt(10), 10)
+    private inner class StopObserver : LifecycleObserver {
+        @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+        fun onLifecycleOwnerDestroy() {
+            Log.d(TAG, "onDestroy of lifecycle owner")
+            stop()
+        }
     }
 
     fun setFPS(fps: Int) {
@@ -80,9 +95,9 @@ class RandomNumberAnimation(private val textView: TextView) {
      * Stop the animation
      */
     fun stop(keepChange: Boolean = false) {
-        if (started) {
+        if (isRunning) {
             handler.removeCallbacks(runnable)
-            started = false
+            isRunning = false
             if (!keepChange) {
                 textView.text = defaultValue
             }
@@ -93,9 +108,9 @@ class RandomNumberAnimation(private val textView: TextView) {
      * Start the animation
      */
     fun start() {
-        if (!started) {
+        if (!isRunning) {
             handler.postDelayed(runnable, delay)
-            started = true
+            isRunning = true
         }
     }
 }
