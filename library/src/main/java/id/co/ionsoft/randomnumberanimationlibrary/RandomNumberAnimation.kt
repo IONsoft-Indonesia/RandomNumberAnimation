@@ -67,7 +67,10 @@ class RandomNumberAnimation(private var textView: TextView) {
     init {
         val activity = Util.getActivity(textView.context)
         if (activity != null) {
-            (activity as LifecycleOwner).lifecycle.addObserver(StopObserver())
+            if (activity is LifecycleOwner) {
+                (activity as LifecycleOwner).lifecycle.addObserver(StopObserver())
+                Log.d(TAG, "activity is lifecycle owner")
+            }
             Log.d(TAG, "activity from init is not null")
         } else {
             Log.d(TAG, "activity from init is null")
