@@ -79,6 +79,12 @@ randomNumberAnimation.delay = 16
 randomNumberAnimation.setFPS(60)
 ```
 **Note: This library will stop the animation directly if your Activity being destroyed using LifecycleObserver, so it will avoid Activity leak. However, if your Activity is not implementing LifecycleOwner, you should stop the animation manually when your Activity is finishing. LifecycleOwner is implemented by default by AppCompatActivity. It is also best practice if you stop the animation if it not visible to user and re-start it if it visible to user to gain the best performance**
+
+## Contributing
+Contributions are very welcome. If you find a bug in the library or want a feature and think you can fix it yourself, fork + pull request and we will greatly appreciate it!
+
+We love getting pull requests for new features as well as bugs. However, when it comes to new features please also explain the use case and way you think the library should include it. If you don't want to start coding a feature without knowing if the feature will have chance of being included, open an issue and we can discuss the feature!
+
 ## License
 ```
 MIT License
