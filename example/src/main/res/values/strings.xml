@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">RandomNumberAnimation</string>
+    <string name="random_number_generator">Random Number Generator</string>
+    <string name="change_number_in_a_text">Change Numbers In A Text</string>
+    <string name="change_number_in_a_text_content">5 little monkeys jumping on the bed\n1 fell off and bumped his head\nMama called the doctor\nAnd the doctor said\nNo more monkeys jumping on the bed\n4 little monkeys jumping on the bed \n1 fell off and bumped his head\nMama called the doctor \nAnd the doctor said,\nNo more monkeys jumping on the bed\n3 little monkeys jumping on the bed\n1 fell off and bumped his head\nMama called the doctor \nAnd the doctor said,\nNo more monkeys jumping on the bed\n2 little monkeys jumping on the bed\n1 fell off and bumped his head\nMama called the doctor\nAnd the doctor said,\nNo more monkeys jumping on the bed\n1 little monkey jumping on the bed\n1 fell off and bumped his head\nMama called the doctor \nAnd the doctor said,\nPut those monkeys right to bed</string>
+    <string name="still_generating">Still generating…</string>
+    <string name="default_value">00000</string>
+    <string name="create_random_number">Create Random Number</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
 </resources>

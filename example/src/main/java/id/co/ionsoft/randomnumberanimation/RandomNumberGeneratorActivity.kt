@@ -34,7 +34,7 @@ class RandomNumberGeneratorActivity : AppCompatActivity() {
                     isGeneratingRandomNumber = false
                 }, TIME_TO_GENERATE)
             } else {
-                toast("Still generating...")
+                toast(R.string.still_generating)
             }
         }
 
@@ -75,12 +75,12 @@ class RandomNumberGeneratorActivityUi : AnkoComponent<RandomNumberGeneratorActiv
 
                 textView = textView {
                     textSize = 100f
-                    text = "00000"
+                    textResource = R.string.default_value
                     gravity = Gravity.CENTER_HORIZONTAL
                 }
 
                 buttonCreateRandomNumber = button {
-                    text = "Create Random Number"
+                    textResource = R.string.create_random_number
                 }.lparams {
                     width = LinearLayout.LayoutParams.MATCH_PARENT
                     height = LinearLayout.LayoutParams.WRAP_CONTENT

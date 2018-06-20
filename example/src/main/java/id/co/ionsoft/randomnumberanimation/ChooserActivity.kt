@@ -38,13 +38,13 @@ class ChooserActivityUi : AnkoComponent<ChooserActivity> {
             padding = dip(16)
 
             buttonRandomNumberGenerator = button {
-                text = "Random Number Generator"
+                textResource = R.string.random_number_generator
             }.lparams(matchParent, wrapContent) {
                 bottomMargin = dip(8)
             }
 
             buttonChangeNumbersInAText = button {
-                text = "Change Numbers In A Text"
+                textResource = R.string.change_number_in_a_text
             }.lparams(matchParent, wrapContent) {
                 bottomMargin = dip(8)
             }

@@ -63,35 +63,11 @@ class ChangeNumbersInATextActivityUi : AnkoComponent<ChangeNumbersInATextActivit
                 padding = dip(16)
 
                 textView = textView {
-                    text = "5 little monkeys jumping on the bed\n" +
-                            "1 fell off and bumped his head\n" +
-                            "Mama called the doctor\n" +
-                            "And the doctor said\n" +
-                            "No more monkeys jumping on the bed\n" +
-                            "4 little monkeys jumping on the bed \n" +
-                            "1 fell off and bumped his head\n" +
-                            "Mama called the doctor \n" +
-                            "And the doctor said,\n" +
-                            "No more monkeys jumping on the bed\n" +
-                            "3 little monkeys jumping on the bed\n" +
-                            "1 fell off and bumped his head\n" +
-                            "Mama called the doctor \n" +
-                            "And the doctor said,\n" +
-                            "No more monkeys jumping on the bed\n" +
-                            "2 little monkeys jumping on the bed\n" +
-                            "1 fell off and bumped his head\n" +
-                            "Mama called the doctor\n" +
-                            "And the doctor said,\n" +
-                            "No more monkeys jumping on the bed\n" +
-                            "1 little monkey jumping on the bed\n" +
-                            "1 fell off and bumped his head\n" +
-                            "Mama called the doctor \n" +
-                            "And the doctor said,\n" +
-                            "Put those monkeys right to bed"
+                    textResource = R.string.change_number_in_a_text_content
                 }
 
                 buttonStart = button {
-                    text = "Start"
+                    textResource = R.string.start
                 }.lparams {
                     width = LinearLayout.LayoutParams.MATCH_PARENT
                     height = LinearLayout.LayoutParams.WRAP_CONTENT
@@ -99,7 +75,7 @@ class ChangeNumbersInATextActivityUi : AnkoComponent<ChangeNumbersInATextActivit
                 }
 
                 buttonStop = button {
-                    text = "Stop"
+                    textResource = R.string.stop
                 }.lparams {
                     width = LinearLayout.LayoutParams.MATCH_PARENT
                     height = LinearLayout.LayoutParams.WRAP_CONTENT
