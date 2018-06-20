@@ -33,6 +33,11 @@ import android.content.ContextWrapper
  */
 internal class Util {
     companion object {
+        /**
+         * Copied and modified from
+         * <a href="https://stackoverflow.com/questions/8276634/android-get-hosting-activity-from-a-view/32973351#32973351">a stackoverflow answer</a>
+         * to always get an Activity from a View
+         */
         fun getActivity(context: Context): Activity? {
             var mutableContext = context
             while (mutableContext is ContextWrapper) {
