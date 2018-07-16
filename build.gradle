@@ -2,7 +2,7 @@
 
 buildscript {
     ext {
-        kotlinVersion = '1.2.50'
+        kotlinVersion = '1.2.51'
         ankoVersion = "0.10.2"
         compileSdkVersion = 27
         buildToolsVersion = "27.0.3"

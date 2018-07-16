@@ -29,19 +29,15 @@ import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.OnLifecycleEvent
 import android.os.Handler
-import android.util.Log
 import android.widget.TextView
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.debug
 
 /**
  * Create random number animation from a TextView
  * @author hendrawd on 1/4/18
  */
-
-private val TAG by lazy {
-    RandomNumberAnimation::class.simpleName
-}
-
-class RandomNumberAnimation(private var textView: TextView) {
+class RandomNumberAnimation(private var textView: TextView) : AnkoLogger {
 
     private val randomizer by lazy {
         Randomizer()
@@ -69,11 +65,11 @@ class RandomNumberAnimation(private var textView: TextView) {
         if (activity != null) {
             if (activity is LifecycleOwner) {
                 (activity as LifecycleOwner).lifecycle.addObserver(StopObserver())
-                Log.d(TAG, "activity is lifecycle owner")
+                debug("activity is lifecycle owner")
             }
-            Log.d(TAG, "activity from init is not null")
+            debug("activity from init is not null")
         } else {
-            Log.d(TAG, "activity from init is null")
+            debug("activity from init is null")
         }
         this.defaultValue = textView.text
     }
@@ -81,7 +77,7 @@ class RandomNumberAnimation(private var textView: TextView) {
     private inner class StopObserver : LifecycleObserver {
         @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
         fun onLifecycleOwnerDestroy() {
-            Log.d(TAG, "onDestroy of lifecycle owner")
+            debug("onDestroy of lifecycle owner")
             stop()
         }
     }

@@ -1,6 +1,5 @@
 package id.co.ionsoft.randomnumberanimation
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -17,12 +16,10 @@ class ChooserActivity : AppCompatActivity() {
         val chooserActivityUi = ChooserActivityUi()
         chooserActivityUi.setContentView(this)
         chooserActivityUi.buttonRandomNumberGenerator.setOnClickListener {
-            val intent = Intent(this, RandomNumberGeneratorActivity::class.java)
-            startActivity(intent)
+            startActivity<RandomNumberGeneratorActivity>()
         }
         chooserActivityUi.buttonChangeNumbersInAText.setOnClickListener {
-            val intent = Intent(this, ChangeNumbersInATextActivity::class.java)
-            startActivity(intent)
+            startActivity<ChangeNumbersInATextActivity>()
         }
     }
 }
