@@ -8,18 +8,19 @@ import android.widget.LinearLayout
 import org.jetbrains.anko.*
 
 /**
- * @author hendrawd on 2/15/18
+ * @author hendrawd on 15 Feb 2018
  */
 class ChooserActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val chooserActivityUi = ChooserActivityUi()
-        chooserActivityUi.setContentView(this)
-        chooserActivityUi.buttonRandomNumberGenerator.setOnClickListener {
-            startActivity<RandomNumberGeneratorActivity>()
-        }
-        chooserActivityUi.buttonChangeNumbersInAText.setOnClickListener {
-            startActivity<ChangeNumbersInATextActivity>()
+        ChooserActivityUi().apply {
+            setContentView(this@ChooserActivity)
+            buttonRandomNumberGenerator.setOnClickListener {
+                startActivity<RandomNumberGeneratorActivity>()
+            }
+            buttonChangeNumbersInAText.setOnClickListener {
+                startActivity<ChangeNumbersInATextActivity>()
+            }
         }
     }
 }

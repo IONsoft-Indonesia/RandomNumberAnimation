@@ -1,40 +1,47 @@
 package id.co.ionsoft.randomnumberanimation
 
 import android.os.Bundle
-import android.os.Handler
-import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
-import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import id.co.ionsoft.randomnumberanimationlibrary.RandomNumberAnimation
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.delay
+import kotlinx.coroutines.experimental.launch
 import org.jetbrains.anko.*
+import java.util.concurrent.TimeUnit
 
 private const val TIME_TO_GENERATE = 3_000L // in milliseconds
 
-class RandomNumberGeneratorActivity : AppCompatActivity() {
+/**
+ * @author hendrawd on 15 Feb 2018
+ */
+class RandomNumberGeneratorActivity : BaseActivity() {
 
-    private var randomNumberAnimation: RandomNumberAnimation? = null
+    private lateinit var randomNumberAnimation: RandomNumberAnimation
     private var isGeneratingRandomNumber = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val randomNumberGeneratorActivityUi = RandomNumberGeneratorActivityUi()
-        randomNumberGeneratorActivityUi.setContentView(this)
-        randomNumberAnimation = RandomNumberAnimation(randomNumberGeneratorActivityUi.textView)
-
-        randomNumberGeneratorActivityUi.buttonCreateRandomNumber.setOnClickListener {
-            if (!isGeneratingRandomNumber) {
-                isGeneratingRandomNumber = true
-                randomNumberAnimation?.start()
-                Handler().postDelayed({
-                    randomNumberAnimation?.stop(true)
-                    isGeneratingRandomNumber = false
-                }, TIME_TO_GENERATE)
-            } else {
-                toast(R.string.still_generating)
+        RandomNumberGeneratorActivityUi().apply {
+            setContentView(this@RandomNumberGeneratorActivity)
+            randomNumberAnimation = RandomNumberAnimation(textView)
+            buttonCreateRandomNumber.setOnClickListener {
+                if (!isGeneratingRandomNumber) {
+                    isGeneratingRandomNumber = true
+                    randomNumberAnimation.apply {
+                        start()
+                        launch(UI) {
+                            delay(TIME_TO_GENERATE, TimeUnit.MILLISECONDS)
+                            stop(true)
+                            isGeneratingRandomNumber = false
+                        }
+                    }
+                } else {
+                    toast(R.string.still_generating)
+                }
             }
         }
 
@@ -42,23 +49,9 @@ class RandomNumberGeneratorActivity : AppCompatActivity() {
     }
 
     override fun onStop() {
-        randomNumberAnimation?.stop(true)
+        randomNumberAnimation.stop(true)
         isGeneratingRandomNumber = false
         super.onStop()
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item!!.itemId) {
-            android.R.id.home -> {
-                onBackPressed()
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    private fun createBackButton() {
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 }
 

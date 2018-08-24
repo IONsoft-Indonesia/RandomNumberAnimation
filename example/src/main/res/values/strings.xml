@@ -8,4 +8,6 @@
     <string name="create_random_number">Create Random Number</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
+    <string name="alert_numbers_back_to_original">The numbers back to the original is intended. You should call stop(true) to keep the changes from RandomNumberAnimation</string>
+    <string name="cool">Cool!</string>
 </resources>

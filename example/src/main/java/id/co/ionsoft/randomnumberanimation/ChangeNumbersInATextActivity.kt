@@ -1,8 +1,6 @@
 package id.co.ionsoft.randomnumberanimation
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
@@ -10,43 +8,37 @@ import android.widget.TextView
 import id.co.ionsoft.randomnumberanimationlibrary.RandomNumberAnimation
 import org.jetbrains.anko.*
 
-class ChangeNumbersInATextActivity : AppCompatActivity() {
+/**
+ * @author hendrawd on 15 Feb 2018
+ */
+class ChangeNumbersInATextActivity : BaseActivity() {
 
-    private var randomNumberAnimation: RandomNumberAnimation? = null
+    private lateinit var randomNumberAnimation: RandomNumberAnimation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val changeNumbersInATextActivityUi = ChangeNumbersInATextActivityUi()
-        changeNumbersInATextActivityUi.setContentView(this)
-        randomNumberAnimation = RandomNumberAnimation(changeNumbersInATextActivityUi.textView)
-        randomNumberAnimation!!.delay = 1000
-        changeNumbersInATextActivityUi.buttonStart.setOnClickListener {
-            randomNumberAnimation?.start()
+        ChangeNumbersInATextActivityUi().apply {
+            setContentView(this@ChangeNumbersInATextActivity)
+            randomNumberAnimation = RandomNumberAnimation(textView)
+            randomNumberAnimation.apply {
+                delay = 1_000L
+                buttonStart.setOnClickListener {
+                    start()
+                }
+                buttonStop.setOnClickListener {
+                    stop()
+                    alert(R.string.alert_numbers_back_to_original) {
+                        positiveButton(R.string.cool) {}
+                    }.show()
+                }
+            }
         }
-        changeNumbersInATextActivityUi.buttonStop.setOnClickListener {
-            randomNumberAnimation?.stop()
-        }
-
         createBackButton()
     }
 
     override fun onStop() {
-        randomNumberAnimation?.stop()
+        randomNumberAnimation.stop()
         super.onStop()
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item!!.itemId) {
-            android.R.id.home -> {
-                onBackPressed()
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    private fun createBackButton() {
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 }
 
