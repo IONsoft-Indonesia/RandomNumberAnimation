@@ -24,6 +24,8 @@ android {
     }
 }
 
+kotlin.experimental.coroutines "enable"
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -35,13 +37,13 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
     implementation "org.jetbrains.anko:anko-commons:$ankoVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.22.5"
 }
 
 repositories {
     mavenCentral()
 }
 
-// quick fix for https://github.com/jitpack/jitpack.io/issues/2189
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     classifier = 'sources'
@@ -49,4 +51,3 @@ task sourcesJar(type: Jar) {
 artifacts {
     archives sourcesJar
 }
-// end quick fix for https://github.com/jitpack/jitpack.io/issues/2189

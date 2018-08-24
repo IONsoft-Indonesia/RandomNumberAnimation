@@ -33,3 +33,6 @@ ktlint
 
 # Instapk
 instapk.*
+
+.idea/instapk.xml
+instapk.log*

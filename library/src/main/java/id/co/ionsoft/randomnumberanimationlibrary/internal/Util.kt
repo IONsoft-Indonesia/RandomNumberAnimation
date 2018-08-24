@@ -22,38 +22,29 @@
  * SOFTWARE.
  */
 
-package id.co.ionsoft.randomnumberanimationlibrary
+package id.co.ionsoft.randomnumberanimationlibrary.internal
 
-import java.security.SecureRandom
+import android.app.Activity
+import android.content.Context
+import android.content.ContextWrapper
 
 /**
- * @author hendrawd on 16/04/18
+ * @author hendrawd on 16 Apr 2018
  */
-internal class Randomizer {
-
-    private val random by lazy {
-        SecureRandom()
-    }
-
+internal object Util {
     /**
-     * Takes a number CharSequence and return a random number String with the same length of the input
+     * Copied and modified from
+     * <a href="https://stackoverflow.com/questions/8276634/android-get-hosting-activity-from-a-view/32973351#32973351">a stackoverflow answer</a>
+     * to always get an Activity from a View
      */
-    internal fun randomize(numbers: CharSequence): String {
-        return numbers
-                .map {
-                    if (it in '0'..'9') {
-                        getRandomNumberChar()
-                    } else {
-                        it
-                    }
-                }
-                .joinToString("")
-    }
-
-    /**
-     * Get random Char from '0'..'9'
-     */
-    private fun getRandomNumberChar(): Char {
-        return Character.forDigit(random.nextInt(10), 10)
+    fun getActivity(context: Context): Activity? {
+        var mutableContext = context
+        while (mutableContext is ContextWrapper) {
+            if (mutableContext is Activity) {
+                return mutableContext
+            }
+            mutableContext = mutableContext.baseContext
+        }
+        return null
     }
 }

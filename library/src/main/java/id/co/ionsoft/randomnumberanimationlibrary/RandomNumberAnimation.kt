@@ -24,61 +24,64 @@
 
 package id.co.ionsoft.randomnumberanimationlibrary
 
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.OnLifecycleEvent
-import android.os.Handler
 import android.widget.TextView
+import id.co.ionsoft.randomnumberanimationlibrary.internal.RandomNumberAnimationStopper
+import id.co.ionsoft.randomnumberanimationlibrary.internal.Randomizer
+import id.co.ionsoft.randomnumberanimationlibrary.internal.Util
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.cancel
+import kotlinx.coroutines.experimental.delay
+import kotlinx.coroutines.experimental.launch
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.debug
+import java.util.concurrent.TimeUnit
 
 /**
  * Create random number animation from a TextView
- * @author hendrawd on 1/4/18
+ * @author hendrawd on 1 Apr 2018
  */
 class RandomNumberAnimation(private var textView: TextView) : AnkoLogger {
 
-    private val randomizer by lazy {
-        Randomizer()
-    }
-
-    private val handler by lazy {
-        Handler()
-    }
-
-    private val runnable by lazy {
-        object : Runnable {
-            override fun run() {
-                textView.text = randomizer.randomize(textView.text)
-                handler.postDelayed(this, delay)
-            }
-        }
-    }
-
+    private val randomizer = Randomizer()
+    private val infinityTask = InfinityTask()
     private var isRunning = false
     private var defaultValue: CharSequence
+    /**
+     * Delay in milliseconds
+     */
     var delay = 16L
 
     init {
+        observeActivityLifeCycle()
+        defaultValue = textView.text
+    }
+
+    /**
+     * Helper for running periodic change text task with new random number
+     * infinitely until it stopped
+     */
+    private inner class InfinityTask {
+        internal fun start() {
+            launch(UI) {
+                delay(this@RandomNumberAnimation.delay, TimeUnit.MILLISECONDS)
+                if (isRunning) {
+                    textView.text = randomizer.randomize(textView.text)
+                    start()
+                } else {
+                    coroutineContext.cancel()
+                }
+            }
+        }
+    }
+
+    private fun observeActivityLifeCycle() {
         val activity = Util.getActivity(textView.context)
         if (activity != null) {
             if (activity is LifecycleOwner) {
-                (activity as LifecycleOwner).lifecycle.addObserver(StopObserver())
-                debug("activity is lifecycle owner")
+                (activity as LifecycleOwner).lifecycle.addObserver(
+                        RandomNumberAnimationStopper(this)
+                )
             }
-            debug("activity from init is not null")
-        } else {
-            debug("activity from init is null")
-        }
-        this.defaultValue = textView.text
-    }
-
-    private inner class StopObserver : LifecycleObserver {
-        @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-        fun onLifecycleOwnerDestroy() {
-            debug("onDestroy of lifecycle owner")
-            stop()
         }
     }
 
@@ -95,7 +98,6 @@ class RandomNumberAnimation(private var textView: TextView) : AnkoLogger {
      */
     fun stop(keepChange: Boolean = false) {
         if (isRunning) {
-            handler.removeCallbacks(runnable)
             isRunning = false
             if (!keepChange) {
                 textView.text = defaultValue
@@ -108,7 +110,7 @@ class RandomNumberAnimation(private var textView: TextView) : AnkoLogger {
      */
     fun start() {
         if (!isRunning) {
-            handler.postDelayed(runnable, delay)
+            infinityTask.start()
             isRunning = true
         }
     }
