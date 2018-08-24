@@ -21,7 +21,6 @@ AutoCompleteTextView, CheckBox, CompoundButton, ExtractEditText, MultiAutoComple
 ```gradle
 allprojects {
   repositories {
-    ...
     maven { url 'https://jitpack.io' }
   }
 }
@@ -29,7 +28,7 @@ allprojects {
 ### Step 2. Add the dependency
 ```gradle
 dependencies {
-  compile 'com.github.IONsoft-Indonesia:RandomNumberAnimation:1.3.1'
+  implementation 'com.github.IONsoft-Indonesia:RandomNumberAnimation:1.3.1'
 }
 ```
 ### Step 3. Initialize
@@ -78,7 +77,11 @@ randomNumberAnimation.delay = 16
 // or
 randomNumberAnimation.setFPS(60)
 ```
-**Note: This library will stop the animation directly if your Activity being destroyed using LifecycleObserver, so it will avoid Activity leak. However, if your Activity is not implementing LifecycleOwner, you should stop the animation manually when your Activity is finishing. LifecycleOwner is implemented by default by AppCompatActivity. It is also best practice if you stop the animation if it not visible to user and re-start it if it visible to user to gain the best performance**
+#### Note
+This library will stop the animation directly if your Activity being destroyed using LifecycleObserver, so it will avoid Activity leak. However, if your Activity is not implementing LifecycleOwner, you should stop the animation manually when your Activity is finishing. LifecycleOwner is implemented by default by AppCompatActivity. It is also best practice if you stop the animation if it not visible to user and re-start it if it visible to user to gain the best performance**
+
+## Proudly Used By
+- [Pulsaku](https://play.google.com/store/apps/details?id=ion.rnd.android.indonesia&referrer=utm_source%3Dgithub.com%26utm_medium%3Dlibrary%26utm_term%3DRandomNumberAnimation)
 
 ## Contributing
 Contributions are very welcome. If you find a bug in the library or want a feature and think you can fix it yourself, fork + pull request and we will greatly appreciate it!
