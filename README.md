@@ -1,10 +1,10 @@
 # RandomNumberAnimation
 Easily create random number change animation to a TextView and other subclasses of TextView
 
-Direct subclasses:
+##### Direct subclasses:
 Button, CheckedTextView, Chronometer, DigitalClock, EditText, TextClock
 
-Indirect subclasses:
+##### Indirect subclasses:
 AutoCompleteTextView, CheckBox, CompoundButton, ExtractEditText, MultiAutoCompleteTextView, RadioButton, Switch, ToggleButton
 
 <a href="https://jitpack.io/#IONsoft-Indonesia/RandomNumberAnimation"><img alt="Release" src="https://jitpack.io/v/IONsoft-Indonesia/RandomNumberAnimation.svg"></a>
@@ -78,7 +78,7 @@ randomNumberAnimation.delay = 16
 randomNumberAnimation.setFPS(60)
 ```
 #### Note
-This library will stop the animation directly if your Activity being destroyed using LifecycleObserver, so it will avoid Activity leak. However, if your Activity is not implementing LifecycleOwner, you should stop the animation manually when your Activity is finishing. LifecycleOwner is implemented by default by AppCompatActivity. It is also best practice if you stop the animation if it not visible to user and re-start it if it visible to user to gain the best performance**
+This library will stop the animation directly if your Activity being destroyed using LifecycleObserver, so it will avoid Activity leak. However, if your Activity is not implementing LifecycleOwner, you should stop the animation manually when your Activity is finishing. LifecycleOwner is implemented by default by AppCompatActivity. It is also best practice if you stop the animation if it not visible to user and re-start it if it visible to user to gain the best performance
 
 ## Proudly Used By
 - [**Pulsaku**](https://play.google.com/store/apps/details?id=ion.rnd.android.indonesia&referrer=utm_source%3Dgithub.com%26utm_medium%3Dlibrary%26utm_term%3DRandomNumberAnimation)
